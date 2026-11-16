@@ -2,31 +2,38 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Тренажер префлопа PRO</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Preflop PRO">
+<title>Preflop PRO</title>
 <style>
-body{background:#181e24;color:#fff;font-family:sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0}
-.box{width:620px;background:#212932;padding:18px;border-radius:12px}
-.row{display:flex;gap:6px;margin-bottom:9px;align-items:center}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+body{background:#12171d;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;margin:0;padding:10px;display:flex;justify-content:center;align-items:flex-start;min-height:100vh}
+.box{width:100%;max-width:500px;background:#1e2630;padding:14px;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.4)}
 .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.score{font-size:17px;font-weight:bold;color:#90caf9}
-.btn{flex:1;padding:8px;background:#2c3844;color:#b0bec5;border:2px solid transparent;border-radius:6px;font-weight:bold;cursor:pointer}
+.score{font-size:17px;font-weight:700;color:#90caf9}
+.btn-e{background:#37474f;color:#fff;border:none;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600;font-size:14px}
+.row{display:flex;gap:5px;margin-bottom:8px;align-items:center}
+.lbl{width:64px;font-size:12px;color:#90a4ae;font-weight:600;flex-shrink:0}
+.btn{flex:1;padding:10px 2px;background:#2a3542;color:#b0bec5;border:2px solid transparent;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px}
 .btn.act{background:#1565c0;color:#fff;border-color:#64b5f6}
 .btn.opp{background:#6a1b9a;color:#fff;border-color:#ba68c8}
 .btn.mact{background:#00695c;color:#fff;border-color:#4db6ac}
-.btn-e{background:#455a64;color:#fff;border:none;padding:7px 12px;border-radius:6px;cursor:pointer;font-weight:bold}
-.bar{background:#2c3844;padding:8px 12px;border-radius:8px;margin-bottom:12px;display:flex;justify-content:space-between}
-.tbl{background:#1b5e3a;border:2px solid #2e7d32;border-radius:10px;padding:18px;text-align:center;margin-bottom:12px}
-.cards{display:flex;justify-content:center;gap:12px;margin:10px 0}
-.card{width:74px;height:104px;background:#fff;border-radius:8px;display:flex;flex-direction:column;justify-content:center;align-items:center;font-size:28px;font-weight:bold}
+.bar{background:#2a3542;padding:10px 12px;border-radius:10px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;font-size:14px}
+.bar input{width:18px;height:18px;vertical-align:middle;margin-right:6px}
+.tbl{background:#1b5e3a;border:2px solid #2e7d32;border-radius:12px;padding:18px 10px;text-align:center;margin-bottom:12px}
+.cards{display:flex;justify-content:center;gap:14px;margin:12px 0}
+.card{width:84px;height:118px;background:#fff;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;font-size:32px;font-weight:800;box-shadow:0 4px 10px rgba(0,0,0,.35)}
 .red{color:#d32f2f}.black{color:#212121}
-.abtn{flex:1;padding:13px;font-size:16px;font-weight:bold;color:#fff;border:none;border-radius:8px;cursor:pointer}
+.abtn{flex:1;padding:16px 6px;font-size:16px;font-weight:700;color:#fff;border:none;border-radius:10px;cursor:pointer}
 .agg{background:#ad1457}.rais{background:#2e7d32}.fld{background:#c62828}
-.res{margin-top:10px;font-size:15px;font-weight:bold;text-align:center;min-height:20px}
+.res{margin-top:12px;font-size:16px;font-weight:700;text-align:center;min-height:24px}
 .win{color:#81c784}.lose{color:#ef9a9a}
 .grid{display:grid;grid-template-columns:repeat(13,1fr);gap:2px;margin:8px 0}
-.c{background:#2c3844;color:#90a4ae;font-size:11px;font-weight:bold;text-align:center;padding:5px 0;border-radius:3px;cursor:pointer}
-.c.on{background:#8bc34a;color:#181e24}.c.ag{background:#f06292;color:#181e24}
-textarea{width:100%;height:55px;background:#181e24;color:#8bc34a;border:1px solid #455a64;border-radius:6px;padding:5px;font-family:monospace;font-size:11px;box-sizing:border-box}
+.c{background:#2a3542;color:#90a4ae;font-size:10px;font-weight:700;text-align:center;padding:7px 0;border-radius:3px;cursor:pointer}
+.c.on{background:#8bc34a;color:#12171d}.c.ag{background:#f06292;color:#12171d}
+textarea{width:100%;height:60px;background:#12171d;color:#8bc34a;border:1px solid #37474f;border-radius:8px;padding:6px;font-family:monospace;font-size:11px;margin-top:6px}
 </style>
 </head>
 <body>
@@ -38,7 +45,7 @@ textarea{width:100%;height:55px;background:#181e24;color:#8bc34a;border:1px soli
     <button class="btn" id="m-VS" onclick="setM('VS')">3. vs 3-Бет</button>
   </div>
   <div class="row">
-    <span style="width:70px;font-size:12px;color:#90a4ae">Ты:</span>
+    <span class="lbl">Ты:</span>
     <button class="btn act" id="p-EP" onclick="setP('EP')">EP</button>
     <button class="btn" id="p-MP" onclick="setP('MP')">MP</button>
     <button class="btn" id="p-CO" onclick="setP('CO')">CO</button>
@@ -47,7 +54,7 @@ textarea{width:100%;height:55px;background:#181e24;color:#8bc34a;border:1px soli
     <button class="btn" id="p-BB" onclick="setP('BB')">BB</button>
   </div>
   <div class="row" id="vRow" style="display:none">
-    <span style="width:70px;font-size:12px;color:#90a4ae">Оппонент:</span>
+    <span class="lbl">Оппонент:</span>
     <button class="btn" id="v-EP" onclick="setV('EP')">EP</button>
     <button class="btn" id="v-MP" onclick="setV('MP')">MP</button>
     <button class="btn opp" id="v-CO" onclick="setV('CO')">CO</button>
@@ -55,9 +62,9 @@ textarea{width:100%;height:55px;background:#181e24;color:#8bc34a;border:1px soli
     <button class="btn" id="v-SB" onclick="setV('SB')">SB</button>
     <button class="btn" id="v-BB" onclick="setV('BB')">BB</button>
   </div>
-  <div class="bar"><label style="color:#ffeb3b;font-weight:bold;cursor:pointer"><input type="checkbox" id="edg" onchange="nxt()"> Границы</label><span style="font-size:12px;color:#b0bec5" id="hnt">Все руки</span></div>
+  <div class="bar"><label style="color:#ffeb3b;font-weight:700;cursor:pointer"><input type="checkbox" id="edg" onchange="nxt()">Границы</label><span style="font-size:12px;color:#b0bec5" id="hnt">Все руки</span></div>
   <div id="vGame">
-    <div class="tbl"><div style="color:#c8e6c9;font-weight:bold" id="pLbl"></div><div class="cards" id="cBox"></div><div style="color:#ffeb3b;font-weight:bold" id="hCode"></div></div>
+    <div class="tbl"><div style="color:#c8e6c9;font-weight:700;font-size:15px" id="pLbl"></div><div class="cards" id="cBox"></div><div style="color:#ffeb3b;font-weight:700;font-size:16px" id="hCode"></div></div>
     <div class="row"><button class="abtn agg" id="bAgg" style="display:none" onclick="chk('agg')">3-БЕТ</button><button class="abtn rais" id="bPas" onclick="chk('pas')">РЕЙЗ</button><button class="abtn fld" id="bFld" onclick="chk('fld')">ФОЛД</button></div>
     <div class="res" id="res"></div>
   </div>
